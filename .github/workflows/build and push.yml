@@ -41,7 +41,7 @@ jobs:
           token: ${{ secrets.GITOPS_STAGING_EDIT_TOKEN }}
 
       - name: Edit the YAML admin-portal file for staging
-        uses: mikefarah/yq@v4.44.3
+        uses: mikefarah/yq@v4.44.6
         with:
           cmd: yq e -i '.spec.template.spec.containers[] |= select(.name == "admin-portal").image = "ghcr.io/fiaisis/admin-portal@${{ steps.docker_build.outputs.digest }}"' './components/admin-portal/envs/staging/admin-portal.yml'
 
